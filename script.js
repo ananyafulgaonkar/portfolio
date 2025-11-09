@@ -1,92 +1,75 @@
-/* script.js — autoslide carousels, lightbox, lazy images, year, menu toggle */
-document.addEventListener('DOMContentLoaded', () => {
-  // --- YEAR ---
-  const y = new Date().getFullYear();
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = y;
+/* ======================================================
+   script.js — smooth auto-slide + touch-friendly carousels
+   ====================================================== */
 
-  // --- LAZY LOAD IMAGES ---
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    img.src = img.dataset.src;
-    img.removeAttribute('data-src');
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  /* ---------- current year (for footer) ---------- */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // --- AUTO SLIDE CAROUSELS ---
-  document.querySelectorAll('.carousel').forEach(carousel => {
-    const children = carousel.querySelectorAll('img');
-    if (children.length <= 1) return;
+  /* ---------- auto-slide & swipe carousel ---------- */
+  document.querySelectorAll(".carousel").forEach((carousel) => {
+    const slides = carousel.querySelectorAll("img");
+    if (slides.length <= 1) return;
 
-    let idx = 0;
-    const slide = () => {
-      idx = (idx + 1) % children.length;
-      carousel.scrollTo({ left: carousel.clientWidth * idx, behavior: 'smooth' });
+    let index = 0;
+    let autoSlide;
+
+    const goTo = (i, smooth = true) => {
+      index = (i + slides.length) % slides.length;
+      carousel.scrollTo({
+        left: carousel.clientWidth * index,
+        behavior: smooth ? "smooth" : "instant",
+      });
     };
 
-    let interval = setInterval(slide, 3000);
+    const start = () => {
+      stop();
+      autoSlide = setInterval(() => goTo(index + 1), 3000);
+    };
+    const stop = () => clearInterval(autoSlide);
 
-    // Pause on hover/touch
-    carousel.addEventListener('mouseenter', () => clearInterval(interval));
-    carousel.addEventListener('mouseleave', () => interval = setInterval(slide, 3000));
-    carousel.addEventListener('touchstart', () => clearInterval(interval));
-  });
-
-  // --- LIGHTBOX FUNCTIONALITY ---
-  const lightbox = document.getElementById('lightbox');
-
-  function openLightbox(src, caption) {
-    if (!lightbox) return;
-    lightbox.innerHTML = `
-      <button class="lb-close" aria-label="Close">✕</button>
-      <img src="${src}" alt="${caption || ''}">
-      <p class="lb-cap">${caption || ''}</p>
-    `;
-    lightbox.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    lightbox.querySelector('.lb-close').addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  }
-
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('show');
-    document.body.style.overflow = '';
-    setTimeout(() => (lightbox.innerHTML = ''), 200);
-  }
-
-  // Attach lightbox click handlers to certs & carousel images
-  document.querySelectorAll('.cert-card img, .carousel img, .about-photo img').forEach(img => {
-    img.addEventListener('click', e => {
-      openLightbox(e.currentTarget.src, e.currentTarget.alt || '');
+    /* --- touch / drag support --- */
+    let startX = 0;
+    carousel.addEventListener("touchstart", (e) => {
+      stop();
+      startX = e.touches[0].clientX;
     });
-  });
-
-  // --- SCROLL REVEAL ANIMATION ---
-  const revealTargets = document.querySelectorAll('.section, .cert-card, .intern-card, .edu-card');
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        en.target.style.opacity = 1;
-        en.target.style.transform = 'none';
-        obs.unobserve(en.target);
+    carousel.addEventListener("touchmove", (e) => {
+      const dx = e.touches[0].clientX - startX;
+      if (Math.abs(dx) > 60) {
+        goTo(index + (dx < 0 ? 1 : -1));
+        startX = e.touches[0].clientX; // reset for smoother swiping
       }
     });
-  }, { threshold: 0.1 });
+    carousel.addEventListener("touchend", start);
 
-  revealTargets.forEach(t => {
-    t.style.opacity = 0;
-    t.style.transform = 'translateY(20px)';
-    t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    io.observe(t);
+    /* --- hover pause on desktop --- */
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+
+    /* --- kick off --- */
+    start();
   });
 
-  // --- MOBILE MENU TOGGLE ---
-  const menuBtn = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
+  /* ---------- lightbox viewer ---------- */
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox) {
+    document.querySelectorAll(".carousel img, .cert-card img").forEach((img) => {
+      img.addEventListener("click", () => {
+        lightbox.innerHTML = `
+          <button class="lb-close">✕</button>
+          <img src="${img.src}" alt="">
+        `;
+        lightbox.classList.add("show");
+      });
+    });
 
-  if (menuBtn && navMenu) {
-    menuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuBtn.classList.toggle('open');
+    lightbox.addEventListener("click", (e) => {
+      if (e.target.classList.contains("lb-close") || e.target === lightbox) {
+        lightbox.classList.remove("show");
+        lightbox.innerHTML = "";
+      }
     });
   }
 });

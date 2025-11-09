@@ -562,3 +562,20 @@ p, li {
   display: block;
   background: var(--border);
 }
+
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.carousel img {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #E9E9D6; /* soft sage bg */
+}
