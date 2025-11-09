@@ -1,0 +1,564 @@
+/* ================= GLOBAL RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ivory: #F3F3E3;
+  --sage: #E9E9D6;
+  --muted: #DDE5D5;
+  --primary: #145741;
+  --deep: #0E3C2C;
+  --text: #163D2D;
+  --border: #C8D6C2;
+  --shadow: rgba(14,60,44,0.08);
+}
+
+html, body {
+  font-family: "Outfit", sans-serif;
+  background: var(--ivory);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+section {
+  padding: 5rem 2rem;
+}
+
+/* ================= HEADER ================= */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--ivory);
+  box-shadow: 0 2px 10px var(--shadow);
+  z-index: 999;
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.logo-mark {
+  background: var(--primary);
+  color: var(--ivory);
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--primary);
+  transition: 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--deep);
+  text-shadow: 0 0 6px rgba(20, 87, 65, 0.25);
+}
+
+/* ================= HERO ================= */
+.hero {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 5rem;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-name {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.hero-role {
+  font-weight: 500;
+  color: var(--deep);
+  margin-bottom: 1rem;
+}
+
+.hero-lead {
+  color: var(--text);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.portrait-card {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 20px var(--shadow);
+  border: 4px solid var(--border);
+  background: var(--ivory);
+  transition: transform 0.4s ease;
+}
+
+.portrait-card:hover {
+  transform: scale(1.03);
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  font-family: "Outfit", sans-serif;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: var(--ivory);
+}
+
+.btn.primary:hover {
+  background: var(--deep);
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn.ghost:hover {
+  background: var(--muted);
+}
+
+/* ================= SECTION HEADINGS ================= */
+.section h2 {
+  margin-bottom: 3rem;
+  font-size: 1.9rem;
+  color: var(--primary);
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background: var(--border);
+  margin-top: 0.6rem;
+  border-radius: 10px;
+}
+
+/* ================= INTERNSHIPS ================= */
+.intern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.2rem;
+}
+
+.intern-item {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 22px var(--shadow);
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.intern-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(14,60,44,0.15);
+}
+
+.intern-item .carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  background: var(--sage);
+  border-bottom: 1px solid var(--border);
+  padding: 8px;
+}
+
+.intern-item .carousel img {
+  max-width: 92%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: transform 0.36s ease;
+}
+
+.intern-item .carousel img:hover {
+  transform: scale(1.02);
+}
+
+.intern-item .card-body {
+  padding: 1.4rem 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.intern-item h3 {
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.intern-item p {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ================= CERTIFICATES ================= */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px var(--shadow);
+  border: 1px solid var(--border);
+  transition: 0.3s ease;
+  min-height: 300px;
+}
+
+.cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(14,60,44,0.12);
+  border-color: var(--primary);
+}
+
+.cert-card .cert-frame {
+  height: 180px;
+  display: grid;
+  place-items: center;
+  background: var(--muted);
+  border-radius: 10px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.cert-card .cert-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.cert-card .cert-meta {
+  margin-top: 0.9rem;
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ================= CONTACT ================= */
+.contact-wrap {
+  text-align: center;
+}
+
+.contact-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.contact-list a {
+  font-weight: 500;
+  color: var(--primary);
+  transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+  color: var(--deep);
+  text-decoration: underline;
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--sage);
+  color: var(--deep);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border-top: 1px solid var(--border);
+}
+*:focus {
+  outline: none !important;
+}
+/* --- Fix hero section wrapping and alignment --- */
+.hero-inner {
+  align-items: flex-start; /* aligns text block top, not center */
+  flex-wrap: wrap; /* allows text and buttons to wrap nicely */
+}
+
+.hero-left {
+  flex: 1 1 60%;
+  min-width: 320px;
+}
+
+.hero-actions {
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.hero-lead {
+  max-width: 550px;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+/* 🌿 Overall Typographic Polish & Spacing Harmony */
+body {
+  font-family: "Outfit", sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.1px;
+  color: var(--text);
+  background: var(--ivory);
+}
+
+/* Restore calm padding and visual rhythm between sections */
+section {
+  padding: 5rem 2rem 4rem;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 🪷 Section Titles - bigger, softer breathing space */
+.section h2 {
+  font-size: 2.2rem;
+  color: var(--primary);
+  letter-spacing: 0.3px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 3px;
+  background: var(--border);
+  margin-top: 0.6rem;
+  border-radius: 10px;
+}
+
+/* 🌷 Restore link aesthetic globally */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  color: var(--deep);
+  text-shadow: 0 0 6px rgba(20, 87, 65, 0.25);
+}
+
+/* remove all browser blue link defaults */
+a:visited,
+a:active {
+  color: var(--primary);
+}
+
+/* ✨ Education Section — Spacing, hierarchy, and readability */
+#education {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.edu-grid {
+  display: block;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.edu-card {
+  background: var(--sage);
+  border-radius: 16px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 1px solid var(--border);
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.edu-card strong {
+  color: var(--primary);
+}
+
+.edu-card h3 {
+  font-size: 1.3rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.edu-card p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.edu-card em {
+  font-style: italic;
+  color: var(--deep);
+}
+
+/* 🧁 Consistent spacing between paragraphs and headings */
+.edu-card p + p {
+  margin-top: 0.4rem;
+}
+
+/* 🌼 Program + Membership subheading */
+.edu-card h4 {
+  margin-top: 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.2px;
+}
+
+/* 🪞 Global text improvement */
+p, li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+}
+
+/* 🫶 Buttons spacing harmony fix */
+.hero-actions {
+  margin-top: 2rem;
+  gap: 1.2rem;
+}
+
+/* ✨ Soft footer fix */
+.site-footer {
+  background: var(--sage);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--deep);
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  border-top: 1px solid var(--border);
+}
+
+/* 🩶 Responsive soft spacing */
+@media (max-width: 900px) {
+  section {
+    padding: 4rem 1.4rem;
+  }
+
+  .edu-card {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .section h2 {
+    font-size: 1.9rem;
+    margin-bottom: 2rem;
+  }
+}
+/* Fix ghost close button showing when lightbox is hidden */
+.lightbox {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lightbox.show {
+  display: flex;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Ensure close button is hidden unless lightbox is active */
+.lightbox:not(.show) .lb-close {
+  display: none !important;
+}
+#contact {
+  background: linear-gradient(180deg, var(--sage) 0%, var(--ivory) 100%);
+  padding: 5rem 2rem 6rem;
+  border-top: 1px solid var(--border);
+}
+
+#contact p,
+#contact li {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--deep);
+}
+
+#contact a {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+#contact a:hover {
+  color: var(--deep);
+  text-decoration: underline;
+}
+/* 🌿 Center-align the Contact heading underline properly */
+#contact h2 {
+  text-align: center;
+  position: relative;
+}
+
+#contact h2::after {
+  margin: 0.6rem auto 0; /* centers underline */
+  display: block;
+  background: var(--border);
+}
