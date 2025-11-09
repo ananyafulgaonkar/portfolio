@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const start = () => {
       stop();
-      autoSlide = setInterval(() => goTo(index + 1), 3000);
+      autoSlide = setInterval(() => goTo(index + 1), 2000);
     };
     const stop = () => clearInterval(autoSlide);
 
