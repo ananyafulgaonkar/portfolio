@@ -1,38 +1,32 @@
-/* ================= GLOBAL RESET ================= */
+/* 🌿 FINAL CLEAN + RESPONSIVE + CUTE CSS FIX */
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Colors */
 :root {
   --ivory: #F3F3E3;
-  --sage: #E9E9D6;
-  --muted: #DDE5D5;
-  --primary: #145741;
+  --sage: #E7EAD6;
   --deep: #0E3C2C;
-  --text: #163D2D;
+  --primary: #145741;
+  --text: #164535;
   --border: #C8D6C2;
-  --shadow: rgba(14,60,44,0.08);
+  --shadow: rgba(14, 60, 44, 0.08);
 }
 
+/* Base styles */
 html, body {
   font-family: "Outfit", sans-serif;
-  background: var(--ivory);
   color: var(--text);
+  background: var(--ivory);
   scroll-behavior: smooth;
+  line-height: 1.7;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-section {
-  padding: 5rem 2rem;
-}
-
-/* ================= HEADER ================= */
+/* 🌸 Header / Navbar */
 .topbar {
   position: fixed;
   top: 0;
@@ -43,22 +37,21 @@ section {
 }
 
 .topbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
   padding: 1rem 2rem;
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--primary);
-  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .logo-mark {
@@ -67,30 +60,66 @@ section {
   font-weight: 600;
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 6px var(--shadow);
 }
 
 .nav {
   display: flex;
-  gap: 1.6rem;
+  gap: 1.5rem;
 }
 
 .nav a {
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
-  color: var(--primary);
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav a:hover {
   color: var(--deep);
-  text-shadow: 0 0 6px rgba(20, 87, 65, 0.25);
 }
 
-/* ================= HERO ================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* Mobile Nav */
+@media (max-width: 850px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    right: 0;
+    width: 100%;
+    background: var(--ivory);
+    text-align: center;
+    box-shadow: 0 2px 10px var(--shadow);
+    padding: 1rem 0;
+  }
+  .nav.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+/* 🌿 Hero Section */
 .hero {
-  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
-  min-height: 90vh;
+  background: linear-gradient(180deg, var(--ivory), var(--sage));
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,14 +128,21 @@ section {
 
 .hero-inner {
   max-width: 1100px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: left;
+}
+
+.hero-left {
+  flex: 1 1 480px;
 }
 
 .hero-name {
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: var(--primary);
   margin-bottom: 0.5rem;
 }
@@ -118,32 +154,40 @@ section {
 }
 
 .hero-lead {
+  max-width: 550px;
   color: var(--text);
-  line-height: 1.6;
-  max-width: 520px;
 }
 
+.hero-actions {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Portrait */
 .portrait-card {
   width: 240px;
   height: 240px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 8px 20px var(--shadow);
   border: 4px solid var(--border);
+  box-shadow: 0 6px 16px var(--shadow);
   background: var(--ivory);
-  transition: transform 0.4s ease;
+  flex-shrink: 0;
 }
 
-.portrait-card:hover {
-  transform: scale(1.03);
+.portrait-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ================= BUTTONS ================= */
+/* Buttons */
 .btn {
-  font-family: "Outfit", sans-serif;
-  padding: 0.8rem 1.6rem;
-  border-radius: 12px;
   border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 0.8rem 1.6rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -156,7 +200,6 @@ section {
 
 .btn.primary:hover {
   background: var(--deep);
-  box-shadow: 0 4px 10px var(--shadow);
 }
 
 .btn.ghost {
@@ -165,208 +208,12 @@ section {
 }
 
 .btn.ghost:hover {
-  background: var(--muted);
-}
-
-/* ================= SECTION HEADINGS ================= */
-.section h2 {
-  margin-bottom: 3rem;
-  font-size: 1.9rem;
-  color: var(--primary);
-  position: relative;
-  letter-spacing: 0.3px;
-}
-
-.section h2::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 3px;
-  background: var(--border);
-  margin-top: 0.6rem;
-  border-radius: 10px;
-}
-
-/* ================= INTERNSHIPS ================= */
-.intern-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 2.2rem;
-}
-
-.intern-item {
-  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 22px var(--shadow);
-  overflow: hidden;
-  transition: 0.3s ease;
-}
-
-.intern-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 36px rgba(14,60,44,0.15);
-}
-
-.intern-item .carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 220px;
   background: var(--sage);
-  border-bottom: 1px solid var(--border);
-  padding: 8px;
 }
 
-.intern-item .carousel img {
-  max-width: 92%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 6px;
-  transition: transform 0.36s ease;
-}
-
-.intern-item .carousel img:hover {
-  transform: scale(1.02);
-}
-
-.intern-item .card-body {
-  padding: 1.4rem 1.6rem 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.intern-item h3 {
-  color: var(--primary);
-  font-size: 1.25rem;
-}
-
-.intern-item p {
-  color: var(--text);
-  line-height: 1.6;
-}
-
-/* ================= CERTIFICATES ================= */
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.cert-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 8px 20px var(--shadow);
-  border: 1px solid var(--border);
-  transition: 0.3s ease;
-  min-height: 300px;
-}
-
-.cert-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(14,60,44,0.12);
-  border-color: var(--primary);
-}
-
-.cert-card .cert-frame {
-  height: 180px;
-  display: grid;
-  place-items: center;
-  background: var(--muted);
-  border-radius: 10px;
-  padding: 8px;
-  overflow: hidden;
-}
-
-.cert-card .cert-frame img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 6px;
-}
-
-.cert-card .cert-meta {
-  margin-top: 0.9rem;
-  text-align: center;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-/* ================= CONTACT ================= */
-.contact-wrap {
-  text-align: center;
-}
-
-.contact-list {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-.contact-list a {
-  font-weight: 500;
-  color: var(--primary);
-  transition: color 0.3s ease;
-}
-
-.contact-list a:hover {
-  color: var(--deep);
-  text-decoration: underline;
-}
-
-/* ================= FOOTER ================= */
-.site-footer {
-  text-align: center;
-  padding: 2rem;
-  background: var(--sage);
-  color: var(--deep);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  border-top: 1px solid var(--border);
-}
-*:focus {
-  outline: none !important;
-}
-/* --- Fix hero section wrapping and alignment --- */
-.hero-inner {
-  align-items: flex-start; /* aligns text block top, not center */
-  flex-wrap: wrap; /* allows text and buttons to wrap nicely */
-}
-
-.hero-left {
-  flex: 1 1 60%;
-  min-width: 320px;
-}
-
-.hero-actions {
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  gap: 1rem;
-}
-
-.hero-lead {
-  max-width: 550px;
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
-/* 🌿 Overall Typographic Polish & Spacing Harmony */
-body {
-  font-family: "Outfit", sans-serif;
-  line-height: 1.7;
-  letter-spacing: 0.1px;
-  color: var(--text);
-  background: var(--ivory);
-}
-
-/* Restore calm padding and visual rhythm between sections */
+/* 🌿 Sections */
 section {
-  padding: 5rem 2rem 4rem;
+  padding: 5rem 2rem;
 }
 
 .wrap {
@@ -374,147 +221,607 @@ section {
   margin: 0 auto;
 }
 
-/* 🪷 Section Titles - bigger, softer breathing space */
 .section h2 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: var(--primary);
-  letter-spacing: 0.3px;
   margin-bottom: 2.5rem;
+  text-align: center;
   position: relative;
-  font-weight: 700;
-  line-height: 1.3;
 }
 
 .section h2::after {
   content: "";
   display: block;
-  width: 90px;
+  width: 80px;
   height: 3px;
   background: var(--border);
-  margin-top: 0.6rem;
+  margin: 0.6rem auto 0;
   border-radius: 10px;
 }
 
-/* 🌷 Restore link aesthetic globally */
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+/* 🌸 Education */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
-a:hover {
+.edu-card {
+  background: var(--sage);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+/* 🌿 Internships + Achievements */
+.intern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.intern-item {
+  background: linear-gradient(180deg, var(--ivory), var(--sage));
+  border-radius: 16px;
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  scroll-snap-align: start;
+  background: var(--sage);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* 🌿 Certificates */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.cert-card {
+  background: var(--sage);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+}
+
+/* 🌿 Contact */
+#contact {
+  background: linear-gradient(180deg, var(--sage), var(--ivory));
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+/* 🌿 Footer */
+.site-footer {
+  background: var(--sage);
   color: var(--deep);
-  text-shadow: 0 0 6px rgba(20, 87, 65, 0.25);
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
 }
 
-/* remove all browser blue link defaults */
-a:visited,
-a:active {
-  color: var(--primary);
+/* 📱 Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 1.5rem;
+  }
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-left {
+    flex: 1 1 100%;
+  }
+  .portrait-card {
+    margin: 0 auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .nav a {
+    font-size: 1rem;
+  }
+}
+/* 🌿 FIX LAYOUT + IMAGE STRETCH ISSUES */
+
+/* Make sure body never scrolls sideways */
+html, body {
+  overflow-x: hidden;
 }
 
-/* ✨ Education Section — Spacing, hierarchy, and readability */
-#education {
+/* Fix carousels — stop full-page stretching */
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--sage);
+  border-bottom: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* Images fit properly */
+.carousel img {
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  scroll-snap-align: center;
+  margin: 0 auto;
+  background: var(--sage);
+  border-radius: 8px;
+}
+
+/* Grid layout fix (centered cards) */
+.intern-grid, .cert-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+}
+
+.intern-item, .cert-card {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Navbar alignment fix */
+.topbar-inner {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Make everything center on small screens */
+@media (max-width: 768px) {
+  .intern-item, .cert-card {
+    max-width: 100%;
+  }
+
+  .carousel img {
+    max-height: 200px;
+  }
+
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+  }
+}
+
+/* Fix horizontal scroll issue */
+* {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+/* 🌿 FINAL FIX — proper centered, non-stretched carousel & card layout */
+
+/* Reset image sizing everywhere */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Carousel --- */
+.carousel {
+  display: flex;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  height: 250px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--sage);
+  position: relative;
+}
+
+.carousel img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  scroll-snap-align: center;
+  background: var(--sage);
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.02);
+}
+
+/* --- Card container alignment --- */
+.intern-item {
+  background: linear-gradient(180deg, var(--ivory), var(--sage));
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px var(--shadow);
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  transition: 0.3s ease;
+}
+
+.intern-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(14, 60, 44, 0.12);
+}
+
+/* --- Grid layout fix --- */
+.intern-grid,
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- Prevent horizontal scrollbars --- */
+html, body {
+  overflow-x: hidden !important;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  .carousel {
+    height: 180px;
+  }
+  .intern-item {
+    max-width: 100%;
+  }
+  .carousel img {
+    object-fit: contain;
+  }
+}
+/* ================= PROJECTS (Refined for equal height cards) ================= */
+#projects {
   background: linear-gradient(180deg, var(--ivory) 0%, var(--sage) 100%);
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
-.edu-grid {
-  display: block;
-  max-width: 950px;
-  margin: 0 auto;
+.project-category {
+  margin-bottom: 4rem;
 }
 
-.edu-card {
-  background: var(--sage);
-  border-radius: 16px;
-  padding: 2.2rem 2rem;
-  box-shadow: 0 6px 18px var(--shadow);
-  border: 1px solid var(--border);
-  line-height: 1.75;
-  color: var(--text);
-}
-
-.edu-card strong {
-  color: var(--primary);
-}
-
-.edu-card h3 {
-  font-size: 1.3rem;
+.project-subtitle {
+  font-size: 1.5rem;
   color: var(--primary);
   font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-.edu-card p {
-  margin: 0.3rem 0;
-  font-size: 1rem;
-  color: var(--text);
-}
-
-.edu-card em {
-  font-style: italic;
-  color: var(--deep);
-}
-
-/* 🧁 Consistent spacing between paragraphs and headings */
-.edu-card p + p {
-  margin-top: 0.4rem;
-}
-
-/* 🌼 Program + Membership subheading */
-.edu-card h4 {
-  margin-top: 1.8rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--primary);
+  margin-bottom: 1.8rem;
   letter-spacing: 0.2px;
 }
 
-/* 🪞 Global text improvement */
-p, li {
-  margin-bottom: 0.6rem;
-  line-height: 1.7;
+/* 🧱 GRID: flexible + equal height rows */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: stretch; /* ensures equal height in row */
 }
 
-/* 🫶 Buttons spacing harmony fix */
-.hero-actions {
-  margin-top: 2rem;
-  gap: 1.2rem;
+/* 🌿 CARD: flexbox ensures equal height + content alignment */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px var(--shadow);
+  padding: 2rem 1.5rem;
+  transition: all 0.3s ease;
+  min-height: 280px; /* optional — prevents squished cards on small text */
 }
 
-/* ✨ Soft footer fix */
-.site-footer {
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(14, 60, 44, 0.12);
+}
+
+/* 💚 Icon container — consistent placement */
+.project-icon {
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
   background: var(--sage);
-  padding: 2.5rem 1rem;
-  text-align: center;
   color: var(--deep);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+/* ✨ Body spacing */
+.project-body {
+  flex: 1 1 auto; /* allows text area to stretch */
+  display: flex;
+  flex-direction: column;
+}
+
+.project-body h4 {
+  color: var(--primary);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.project-body p {
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  flex-grow: 1; /* balances text space inside */
+}
+
+.tags {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--deep);
+  opacity: 0.8;
+  font-style: italic;
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 1.6rem 1.2rem;
+    min-height: auto;
+  }
+
+  .project-subtitle {
+    text-align: center;
+  }
+}
+/* 🖼 Behance iframe embed styling */
+.behance-embed {
+  margin-top: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow);
+  border: 1px solid var(--border);
+  background: var(--ivory);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.behance-embed:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 18px rgba(14, 60, 44, 0.15);
+}
+
+.behance-embed iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+  display: block;
+  background: var(--ivory);
+}
+
+/* 📱 Responsive scaling for smaller screens */
+@media (max-width: 768px) {
+  .behance-embed iframe {
+    height: 200px;
+  }
+}
+
+/* ✨ Project link button */
+.project-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--sage);
+  border-radius: 8px;
+  color: var(--deep);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  background: var(--primary);
+  color: var(--ivory);
+}
+/* 🌿 Remove unwanted scrollbars globally */
+html, body {
+  overflow-x: hidden; /* removes horizontal scrollbar */
+}
+
+/* 🖼 Prevent iframe scrollbars inside project cards */
+.behance-embed iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+  overflow: hidden;       /* hides internal scrolls */
+  display: block;
+  background: var(--ivory);
+}
+
+/* 🪄 For smaller screens (keep ratio clean) */
+@media (max-width: 768px) {
+  .behance-embed iframe {
+    height: 200px;
+  }
+}
+
+/* 🧁 Smooth page scrolling and soft scrollbar removal (optional aesthetic) */
+body::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(20, 87, 65, 0.3);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(20, 87, 65, 0.5);
+}
+/* 💚 Force all links to use theme color — no more blue! */
+a,
+a:link,
+a:visited,
+a:active {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
   font-weight: 500;
-  letter-spacing: 0.4px;
-  border-top: 1px solid var(--border);
 }
 
-/* 🩶 Responsive soft spacing */
-@media (max-width: 900px) {
-  section {
-    padding: 4rem 1.4rem;
-  }
-
-  .edu-card {
-    padding: 1.8rem 1.4rem;
-  }
-
-  .section h2 {
-    font-size: 1.9rem;
-    margin-bottom: 2rem;
-  }
+a:hover {
+  color: var(--deep) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
 }
-/* Fix ghost close button showing when lightbox is hidden */
+
+/* 🩶 Buttons and navbar links stay neat */
+.nav a,
+.hero-actions a,
+.contact-list a,
+.project-card a {
+  color: var(--primary) !important;
+  text-shadow: none !important;
+  list-style: none !important;
+}
+
+.nav a:hover,
+.hero-actions a:hover,
+.contact-list a:hover,
+.project-card a:hover {
+  color: var(--deep) !important;
+  list-style: none !important;
+
+}
+
+/* 🧁 Optional: Behance & external embeds */
+iframe + a.project-link {
+  color: var(--primary) !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+iframe + a.project-link:hover {
+  color: var(--deep) !important;
+}
+/* 🌸 Button Color Fix — visible text + softer outline buttons */
+.btn {
+  font-family: "Outfit", sans-serif;
+  padding: 0.85rem 1.8rem;
+  border-radius: 14px;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* Primary (filled) button — dark green bg + ivory text */
+.btn.primary {
+  background: var(--primary);
+  color: var(--ivory) !important;
+}
+
+.btn.primary:hover {
+  background: var(--deep);
+  border-color: var(--deep);
+  box-shadow: 0 4px 12px rgba(14, 60, 44, 0.25);
+}
+
+/* Ghost (outline) button — green border, ivory bg */
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn.ghost:hover {
+  background: var(--sage);
+  color: var(--deep);
+}
+
+/* Outline button — soft background ivory */
+.btn.outline {
+  background: var(--ivory);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn.outline:hover {
+  background: var(--sage);
+  color: var(--deep);
+}
+
+/* Ensure all button text is sharp and not blue or blurred */
+.btn a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+/* 🌿 FIX Lightbox visibility & ghost dots */
 .lightbox {
   display: none;
   opacity: 0;
   pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .lightbox.show {
@@ -523,59 +830,200 @@ p, li {
   pointer-events: all;
 }
 
-/* Ensure close button is hidden unless lightbox is active */
-.lightbox:not(.show) .lb-close {
-  display: none !important;
-}
-#contact {
-  background: linear-gradient(180deg, var(--sage) 0%, var(--ivory) 100%);
-  padding: 5rem 2rem 6rem;
-  border-top: 1px solid var(--border);
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-#contact p,
-#contact li {
+/* 🧁 Fix for the random close button showing up */
+.lb-close {
+  display: none;
+}
+
+.lightbox.show .lb-close {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Remove stray bullet points or empty text artifacts */
+.lightbox::before,
+.lightbox::after {
+  display: none !important;
+  content: none !important;
+}
+/* 💚 Contact section cleanup */
+.contact-list {
+  list-style: none !important; /* removes dots */
+  padding: 0 !important;
+  margin: 1.5rem 0 0 !important;
+  display: inline-block;
+  text-align: left;
+}
+
+.contact-list li {
+  margin-bottom: 0.8rem;
+  color: var(--text);
   font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--deep);
+  list-style-type: none !important; /* double guarantee */
 }
 
-#contact a {
-  font-weight: 600;
+/* Soft hover for contact links */
+.contact-list a {
   color: var(--primary);
+  font-weight: 600;
   text-decoration: none;
   transition: 0.3s ease;
 }
 
-#contact a:hover {
+.contact-list a:hover {
   color: var(--deep);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
-/* 🌿 Center-align the Contact heading underline properly */
-#contact h2 {
-  text-align: center;
-  position: relative;
+/* ===========================================================
+   🌿 RESPONSIVE POLISH (All Devices: Laptop, Tablet, Mobile)
+   =========================================================== */
+
+/* 📱 Phone (max-width: 600px) */
+@media (max-width: 600px) {
+  /* Adjust hero layout */
+  .hero {
+    padding: 6rem 1rem 4rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .hero-role {
+    font-size: 1.1rem;
+  }
+
+  .portrait-card {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* Reduce grid columns for small screens */
+  .intern-grid,
+  .project-grid,
+  .cert-grid,
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards spacing */
+  .intern-item,
+  .project-card,
+  .cert-card,
+  .edu-card {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* Navbar items */
+  .nav a {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+
+  /* Behance embed */
+  .behance-embed iframe {
+    height: 190px;
+  }
+
+  /* Section headings */
+  .section h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Buttons */
+  .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
 }
 
-#contact h2::after {
-  margin: 0.6rem auto 0; /* centers underline */
-  display: block;
-  background: var(--border);
+/* 📱 Tablet (min-width: 601px) and (max-width: 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-size: 2.4rem;
+  }
+
+  .portrait-card {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .intern-grid,
+  .project-grid,
+  .cert-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    padding: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .behance-embed iframe {
+    height: 220px;
+  }
 }
 
-.carousel {
-  display: flex;
-  overflow-x: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
+/* 💻 Large desktop (min-width: 1400px) — maintain readability */
+@media (min-width: 1400px) {
+  .wrap {
+    max-width: 1200px;
+  }
 
-.carousel img {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #E9E9D6; /* soft sage bg */
+  .hero-name {
+    font-size: 3.2rem;
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+  }
+
+  .intern-grid,
+  .project-grid,
+  .cert-grid {
+    gap: 2.5rem;
+  }
+
+  .btn {
+    font-size: 1.05rem;
+  }
 }
